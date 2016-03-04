@@ -1,7 +1,7 @@
 # Problem-182
 Problem 182 from Projecteuler.net 
 
-The prompt for this problem (provided by Project Euler's Archives:
+The prompt for this problem (provided by Project Euler's Archives):
 
 ## RSA Encryption
 The RSA encryption is based on the following procedure:
@@ -32,16 +32,16 @@ Find the sum of all values of *e*, 1<*e*<*φ*(1009,3643) and gcd(*e*,*φ*)=1, so
 
 ### First Version
 
-With the first version of the program, I wrote a brute force method that would test every possible message for each exponent *e*, count the number of unconcealed messages, find the minimum number of unconcealed messages, and sum all the exponents assosciated with the minimum number of unconcealed messages. This method quickly became unrealistic as the program would have to perform millions of calculations.
+With the first version of the program, I wrote a brute force method that would test every possible message for each exponent *e*, count the number of unconcealed messages, find the minimum number of unconcealed messages, and sum all the exponents assosciated with the minimum number of unconcealed messages. This method quickly became unrealistic as the program would have to perform hundreds of millions of calculations.
 
 ### Second Version
 
-After some experimentation with the first program, I discovered that the minimum number of unconcealed messages was 9, and revised my first code to search for only exponents that which produce 9 unconcealed messages. Although this revision reduced the number of calculations required by the program, the runtime was still unrealistic and further revision were made.
+After some experimentation with the first program, I discovered that the minimum number of unconcealed messages was 9, and revised my first code to search for only exponents which produce 9 unconcealed messages. Although this revision reduced the number of calculations required by the program, the runtime was still unrealistic and further revisions were made.
 
 ### Third Version
 
-After some more experimentation with both previous programs and through the use of the chinese remainder theorem, I was able to show that certain if certain messages ({3028, 3642, 28721, 33210, 73282, 116575}) were unconcealed by an exponent then I could gaurentee that the number of unconcealed messages for that exponent was greater than 9. From there I assumed that if these messages were concealed under an exponent, then the number of unconcealed messages was equal to nine. I revised my code to check only those six messages. With the number of calculations required drastically reduced, program was able to complete in a timely manner and produced the correct answer, indicating that my assumption was correct.
+After some more experimentation with both previous programs and through the use of the chinese remainder theorem, I was able to show that if certain messages ({3028, 3642, 28721, 33210, 73282, 116575}) were unconcealed by an exponent then I could gaurentee that the number of unconcealed messages for that exponent was greater than 9. From there I assumed that if these messages were concealed under an exponent, then the number of unconcealed messages was equal to nine. I revised my code to check only those six messages. With the number of calculations required drastically reduced, program was able to complete in a timely manner and produced the correct answer, indicating that my assumption was correct.
 
 ## Final Version
 
-After having created a function program, I decided to research the topic and discovered a theorm which stated that the minimum number of unconcealed messages for a RSA encryption using specific primes and exponent is equal to (GCD(*e,P*) + 1) * (GCD(*e,Q*) + 1). Using this theorem I was able to write a program that would calculate the minimum number of unconcealed messages for each exponent, determine the minimum number of unconcealed messages for the set of exponents, and then sum those exponents. From there, I adapted the program to allow for user input of the specific prime used in the RSA encryption. Also the program was adapted to export a text file with the relevant RSA encryption information and a list of all exponents that would produce the least amount of unconcealed messages.
+After having created a function program, I decided to research the topic and discovered a theorm which stated that the minimum number of unconcealed messages for a RSA encryption using primes *p, q* and exponent *e* is equal to (GCD(*e,p*) + 1) \* (GCD(*e,q*) + 1). Using this theorem I was able to write a program that could efficiently calculate the minimum number of unconcealed messages for each exponent, determine the minimum number of unconcealed messages for the set of exponents, and then sum those exponents. From there, I adapted the program to allow for user input of the primes used in the RSA encryption. Also the program was adapted to export a text file with the relevant RSA encryption information and a list of all exponents that would produce the least amount of unconcealed messages.
